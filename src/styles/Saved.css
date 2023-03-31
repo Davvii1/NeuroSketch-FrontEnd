@@ -1,0 +1,25 @@
+.savedContainer {
+  min-height: 100%;
+  margin: 0;
+  width: 100%;
+  background: #ebebeb;
+  position: absolute;
+}
+
+.userContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.userContainer > img {
+  height: 10rem;
+  width: 10rem; 
+}
+
+.userContainer > p {
+  font-family: impact;
+  font-size: 1.75rem;
+  margin: 0.5rem;
+}

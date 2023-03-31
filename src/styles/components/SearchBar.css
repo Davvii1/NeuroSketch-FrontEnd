@@ -1,0 +1,19 @@
+#bar {
+  height: 3.125rem;
+  border-radius: 0.938rem;
+  border-color: transparent;
+  padding-left: 4.5rem;
+  box-sizing: border-box;
+  font-size: 1.25rem;
+}
+
+#search {
+  position: absolute;
+  height: 1.875rem;
+  width: 1.875rem;
+  left: 2rem;
+}
+
+.container {
+  position: relative;
+}

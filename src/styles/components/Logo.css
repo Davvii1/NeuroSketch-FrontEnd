@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
+#logo {
+  margin-right: 1.375rem;
+  width: 10.5rem;
+}
+
+#logoText {
+  margin: 0;
+}
