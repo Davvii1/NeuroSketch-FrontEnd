@@ -3,6 +3,7 @@ import Landing from './views/Landing'
 import Search from './views/Search'
 import Saved from './views/Saved'
 import Configuration from './views/Configuration'
+import { DalleProvider } from './context/DalleProvider'
 
 function App() {
   return (
