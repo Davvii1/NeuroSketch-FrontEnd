@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction, createContext } from "react";
 
-interface Search {
+interface SearchContextType {
     search: string,
     setSearch: Dispatch<SetStateAction<string>>,
 }
 
-export const DalleContext = createContext<Search>({} as Search);
+export const DalleContext = createContext<SearchContextType>({} as SearchContextType);

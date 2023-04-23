@@ -1,12 +1,12 @@
 import { DalleContext } from "./DalleContext"
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 
 interface DalleProviderProps {
-  children: JSX.Element | JSX.Element[]
+  children: JSX.Element | JSX.Element[] | ReactNode
 }
 
 export const DalleProvider = ({ children }: DalleProviderProps) => {
-  const [search, setSearch] = useState<string>('');
+  const [search, setSearch] = useState('');
   return (
     <DalleContext.Provider value={{ search, setSearch }}>
       {children}
