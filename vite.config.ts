@@ -9,6 +9,8 @@ export default defineConfig({
         target: 'https://neuro-sketch-backend.vercel.app',
         changeOrigin: true,
         secure: false,
+        ws: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
       }
     }
   },
