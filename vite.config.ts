@@ -3,16 +3,10 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  server: {
-    proxy: {
-      "/api": {
-        target: 'https://neuro-sketch-backend.vercel.app',
-        changeOrigin: true,
-        secure: false,
-        ws: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-      }
-    }
-  },
+  // server: {
+  //   proxy: {
+  //     "/api": "https://neuro-sketch-backend.vercel.app"
+  //   }
+  // },
   plugins: [react()],
 })

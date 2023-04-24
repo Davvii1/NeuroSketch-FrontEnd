@@ -6,8 +6,8 @@ import SearchBar from '../components/SearchBar';
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from 'react';
 import LoadingSpinner from '../components/Loading';
-import axios from 'axios';
 import { DalleContext } from '../context/DalleContext';
+import { dalleapi } from '../api/dalleapi'
 
 interface images {
     id: number;
@@ -21,7 +21,7 @@ const Search = () => {
     const [loading, setLoading] = useState(false);
 
     async function getImage() {
-        const r = await axios
+        const r = await dalleapi
             .post("/api/v1/dalle", {
                 prompt: search,
             });
