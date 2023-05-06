@@ -23,14 +23,18 @@ const Login = () => {
 
     const login = async () => {
         setLoading(true);
-        const r = await loginRequest({ email, password });
-        setToken(r.data.authToken);
-        cookies.set('refreshToken', r.data.refreshToken);
-        const u = await getUserRequest(r.data.authToken);
-        setUser(u.data);
-        setLoading(false);
-        setMessage(r.data.message);
-        navigate('/');
+        await loginRequest({ email, password }).then(async function (r) {
+            setToken(r.data.authToken);
+            cookies.set('refreshToken', r.data.refreshToken);
+            const u = await getUserRequest(r.data.authToken);
+            setUser(u.data);
+            setLoading(false);
+            setMessage(r.data.message);
+            navigate('/');
+        }).catch(async function (err) {
+            setLoading(false);
+            setMessage(err.data.message);
+        });
     }
 
     return (

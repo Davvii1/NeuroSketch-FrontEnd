@@ -13,8 +13,11 @@ const ChangePassword = (props: { active: boolean, setActive: Function }) => {
     const [newPassword, setNewPassword] = useState("");
 
     const changePassword = async () => {
-        const r = await changePasswordRequest({ currentPassword: currentPassword, newPassword: newPassword, authToken: token });
-        setMessage(r.data.message);
+        await changePasswordRequest({ currentPassword: currentPassword, newPassword: newPassword, authToken: token }).then(function (r) {
+            setMessage(r.data.message);
+        }).catch(function (err) {
+            setMessage(err.data.message);
+        });
     }
 
     return (

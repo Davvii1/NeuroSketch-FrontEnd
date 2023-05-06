@@ -18,8 +18,12 @@ const Configuration = () => {
 
     const saveChanges = async () => {
         setUser(user => ({ ...user, email: email }));
-        const r = await updateUserRequest({ nickname: nickname, email: email, authToken: token });
-        setMessage(r.data.message);
+        await updateUserRequest({ nickname: nickname, email: email, authToken: token }).then(function (r) {
+            setMessage(r.data.message);
+        }).catch(function (err) {
+            setMessage(err.data.message);
+        });
+
     }
 
     return (

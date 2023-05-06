@@ -15,9 +15,12 @@ const Register = () => {
     const [password, setPassword] = useState("");
 
     const register = async () => {
-        const r = await registerRequest({ nickname, email, password });
-        setMessage(r.data.message);
-        navigate('/login');
+        await registerRequest({ nickname, email, password }).then(function (r) {
+            setMessage(r.data.message);
+            navigate('/login');
+        }).catch(function (err) {
+            setMessage(err.data.message);
+        });
     }
 
     return (

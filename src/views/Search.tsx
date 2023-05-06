@@ -36,10 +36,13 @@ const Search = () => {
 
     const uploadImage = async (url: string) => {
         const id = uuid();
-        const r = await uploadImageRequest({ id: id, url: url, authToken: token });
-        setMessage(r.data.message);
-        user.images.push({ id: id, url: r.data.url })
-        console.log(r.data);
+        await uploadImageRequest({ id: id, url: url, authToken: token }).then(function (r) {
+            setMessage(r.data.message);
+            user.images.push({ id: id, url: r.data.url })
+            console.log(r.data);
+        }).catch(function (err) {
+            setMessage(err.data.message);
+        });
     }
 
     const logoutFunction = async () => {
