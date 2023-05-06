@@ -9,6 +9,10 @@
   margin-bottom: 2rem;
 }
 
+.insideContainer {
+  position: relative;
+}
+
 .imageContainer {
   margin-top: 3rem;
   width: 100%;
@@ -23,6 +27,16 @@
   height: 350px;
   background-color: #d9d9d9;
   border: 1px solid black;
+}
+
+#downloadIcon {
+  position: absolute;
+  cursor: pointer;
+  background-color: white;
+  padding: 5px;
+  border-radius: 0.5rem;
+  top: 0.5rem;
+  right: 0.5rem;
 }
 
 .imageLoading {

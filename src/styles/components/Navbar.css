@@ -33,7 +33,13 @@
   transform: translate(-50%);
 }
 
-.icon {
-  height: 3rem;
+.icons {
+  height: 100%;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.icons > *:not(:last-child) {
+  margin-right: 0.5rem;
 }

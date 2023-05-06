@@ -28,13 +28,15 @@
 }
 
 .inputContainer {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: center;
 }
 
 .inputContainer > input {
+  grid-column: span 3 / span 3;
   height: 3.125rem;
-  width: 100%;
+  width: 1-0%;
   border-radius: 0.938rem;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -49,8 +51,4 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-}
-
-.centered > *:not(:last-child) {
-  margin-bottom: 2rem;
 }

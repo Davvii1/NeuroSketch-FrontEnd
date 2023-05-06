@@ -1,24 +1,37 @@
 import '../styles/Configuration.css'
-import Navbar from '../components/Navbar';
 import Icon from '../../public/Logo.png'
-import Edit from '../assets/svgs/Edit.svg'
 import Button from '../components/Button';
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import ChangePassword from '../components/ChangePassword';
+import { UserContext } from '../context/UserContext';
+import { TokenContext } from '../context/TokenContext';
+import { updateUserRequest } from '../requests/auth';
+import { MessageContext } from '../context/MessageContext';
 
 const Configuration = () => {
-    const [email, setEmail] = useState("");
+    const { user, setUser } = useContext(UserContext);
+    const { token } = useContext(TokenContext);
+    const { setMessage } = useContext(MessageContext);
+    const [email, setEmail] = useState(user.email);
+    const [nickname, setNickname] = useState(user.nickname);
     const [active, setActive] = useState(false);
+
+    const saveChanges = async () => {
+        setUser(user => ({ ...user, email: email }));
+        const r = await updateUserRequest({ nickname: nickname, email: email, authToken: token });
+        setMessage(r.data.message);
+    }
 
     return (
         <div className='savedContainer'>
             <ChangePassword active={active} setActive={setActive} />
-            <Navbar text='Configuration' icon='saved' />
             <div className='centered'>
                 <div className='userPicInfo'>
                     <img src={Icon} alt="Profile" />
-                    <p>Pedro Rodríguez</p>
-                    <img src={Edit} id='edit' alt="Edit" />
+                </div>
+                <div className='inputContainer'>
+                    <p>Nickname</p>
+                    <input type="text" value={nickname} onChange={(e) => setNickname(e.target.value)} />
                 </div>
                 <div className='inputContainer'>
                     <p>Email</p>
@@ -26,7 +39,7 @@ const Configuration = () => {
                 </div>
                 <div className='buttonContainer'>
                     <Button text='Change password' fontSize='1.5rem' height='3.50rem' impact={true} onClick={() => setActive(true)} />
-                    <Button text='Save changes' fontSize='1.5rem' height='3.50rem' impact={true} />
+                    <Button text='Save changes' fontSize='1.5rem' height='3.50rem' impact={true} onClick={() => saveChanges()} />
                 </div>
             </div>
         </div>

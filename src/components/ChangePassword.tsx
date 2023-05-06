@@ -1,11 +1,21 @@
 import '../styles/components/ChangePassword.css'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Close from '../assets/svgs/Close.svg'
 import Button from './Button'
+import { TokenContext } from '../context/TokenContext'
+import { changePasswordRequest } from '../requests/auth'
+import { MessageContext } from '../context/MessageContext'
 
 const ChangePassword = (props: { active: boolean, setActive: Function }) => {
+    const { token } = useContext(TokenContext);
+    const { setMessage } = useContext(MessageContext);
     const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
+
+    const changePassword = async () => {
+        const r = await changePasswordRequest({ currentPassword: currentPassword, newPassword: newPassword, authToken: token });
+        setMessage(r.data.message);
+    }
 
     return (
         props.active ? (<div className='modalBlur'>
@@ -20,7 +30,7 @@ const ChangePassword = (props: { active: boolean, setActive: Function }) => {
                         <p>New Password</p>
                         <input type="text" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
                     </div>
-                    <Button text='Change password' fontSize='1.5rem' height='3.50rem' impact={true} />
+                    <Button text='Change password' fontSize='1.5rem' height='3.50rem' impact={true} onClick={() => changePassword()} />
                 </div>
             </div>
         </div>) : null

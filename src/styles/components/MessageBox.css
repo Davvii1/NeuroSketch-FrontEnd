@@ -1,0 +1,16 @@
+.messageBox {
+  height: 2rem;
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  background: rgba(161, 255, 161, 0.7);
+  font-family: arial;
+}

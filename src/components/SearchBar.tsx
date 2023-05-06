@@ -1,7 +1,6 @@
 import '../styles/components/SearchBar.css'
 import Icon from '../assets/svgs/Search.svg'
-import { Dispatch, MouseEventHandler, SetStateAction, useContext, useEffect, useState } from 'react'
-import axios from 'axios'
+import { MouseEventHandler, useContext } from 'react'
 import Button from './Button'
 import { DalleContext } from '../context/DalleContext'
 

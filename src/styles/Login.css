@@ -1,0 +1,25 @@
+.loginContainer {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: 100%;
+}
+
+.loginContainer > input {
+  grid-column: span 3 / span 3;
+  height: 3.125rem;
+  width: 100%;
+  border-radius: 0.938rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-color: transparent;
+  box-sizing: border-box;
+  font-size: 1.25rem;
+  margin-left: 1.25rem;
+  border: 1px solid black;
+}
+
+#underlined {
+  text-decoration: underline;
+  cursor: pointer;
+}
