@@ -33,7 +33,7 @@ const Login = () => {
             navigate('/');
         }).catch(async function (err) {
             setLoading(false);
-            setMessage(err.data.message);
+            setMessage(err.response.data.message);
         });
     }
 

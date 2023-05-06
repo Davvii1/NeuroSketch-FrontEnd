@@ -19,7 +19,7 @@ const Register = () => {
             setMessage(r.data.message);
             navigate('/login');
         }).catch(function (err) {
-            setMessage(err.data.message);
+            setMessage(err.response.data.message);
         });
     }
 

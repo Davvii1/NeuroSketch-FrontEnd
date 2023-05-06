@@ -21,7 +21,7 @@ const Configuration = () => {
         await updateUserRequest({ nickname: nickname, email: email, authToken: token }).then(function (r) {
             setMessage(r.data.message);
         }).catch(function (err) {
-            setMessage(err.data.message);
+            setMessage(err.response.data.message);
         });
 
     }

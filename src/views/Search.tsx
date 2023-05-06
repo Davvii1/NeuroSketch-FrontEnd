@@ -41,7 +41,7 @@ const Search = () => {
             user.images.push({ id: id, url: r.data.url })
             console.log(r.data);
         }).catch(function (err) {
-            setMessage(err.data.message);
+            setMessage(err.response.data.message);
         });
     }
 

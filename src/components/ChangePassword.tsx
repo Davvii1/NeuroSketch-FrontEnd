@@ -16,7 +16,7 @@ const ChangePassword = (props: { active: boolean, setActive: Function }) => {
         await changePasswordRequest({ currentPassword: currentPassword, newPassword: newPassword, authToken: token }).then(function (r) {
             setMessage(r.data.message);
         }).catch(function (err) {
-            setMessage(err.data.message);
+            setMessage(err.response.data.message);
         });
     }
 
