@@ -20,7 +20,7 @@ const Navbar = (props: { text: string, icon: string }) => {
         <div className='navbarContainer'>
             <div className='logo'>
                 <img id='homeLogo' src={Icon} alt="Logo" onClick={() => navigate("/")} />
-                <p id='homeText' onClick={() => navigate("/")}>Inicio</p>
+                <p id='homeText' onClick={() => navigate("/")}>Home</p>
             </div>
             <p id='centeredText'>{props.text}</p>
             <div className='icons'>
