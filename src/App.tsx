@@ -7,7 +7,7 @@ import Saved from './views/Saved'
 import Configuration from './views/Configuration'
 import Cookies from 'universal-cookie';
 import { getUserRequest, tokenRequest } from './requests/auth'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { TokenContext } from './context/TokenContext'
 import { UserContext } from './context/UserContext'
 import Protected from './components/Protected'
@@ -18,6 +18,7 @@ function App() {
   const cookies = new Cookies();
   const { setToken } = useContext(TokenContext);
   const { setUser } = useContext(UserContext);
+  const [dataLoaded, setDataLoaded] = useState(false);
 
   const checkAuth = async () => {
     const refreshToken = cookies.get('refreshToken');
@@ -28,6 +29,7 @@ function App() {
       const u = await getUserRequest(r.data.authToken);
       setUser(u.data);
     }
+    setDataLoaded(true);
   }
 
   useEffect(() => {
@@ -36,7 +38,7 @@ function App() {
 
   return (
     <>
-      <Routes>
+      {dataLoaded ? (<Routes>
         <Route element={<TokenLayout />}>
           <Route path='/' element={<Landing />} />
           <Route path='/search' element={<Search />} />
@@ -75,7 +77,7 @@ function App() {
             }
           />
         </Route>
-      </Routes>
+      </Routes>) : null}
     </>
   )
 }
