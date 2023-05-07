@@ -5,7 +5,6 @@ import Register from './views/Register'
 import Search from './views/Search'
 import Saved from './views/Saved'
 import Configuration from './views/Configuration'
-import DalleLayout from './layouts/DalleLayout'
 import Cookies from 'universal-cookie';
 import { getUserRequest, tokenRequest } from './requests/auth'
 import { useContext, useEffect } from 'react'
@@ -39,10 +38,8 @@ function App() {
     <>
       <Routes>
         <Route element={<TokenLayout />}>
-          <Route element={<DalleLayout />}>
-            <Route path='/' element={<Landing />} />
-            <Route path='/search' element={<Search />} />
-          </Route>
+          <Route path='/' element={<Landing />} />
+          <Route path='/search' element={<Search />} />
           <Route
             path='/login'
             element={

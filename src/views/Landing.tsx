@@ -22,7 +22,7 @@ const Landing = () => {
         <>
             <div className='landingContainer'>
                 <Logo color="white" logoSize='13.5rem' fontSize='6rem' />
-                <SearchBar onClick={() => navigate('/search')} />
+                <SearchBar />
             </div>
             <div className='iconsContainer'>
                 {refreshToken == undefined ? (<img src={LoginIcon} alt="Login" onClick={() => navigate('/login')} />) : null}
