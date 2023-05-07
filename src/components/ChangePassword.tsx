@@ -5,19 +5,23 @@ import Button from './Button'
 import { TokenContext } from '../context/TokenContext'
 import { changePasswordRequest } from '../requests/auth'
 import { MessageContext } from '../context/MessageContext'
+import { LoadingContext } from '../context/LoadingContext'
 
 const ChangePassword = (props: { active: boolean, setActive: Function }) => {
     const { token } = useContext(TokenContext);
+    const { setLoading } = useContext(LoadingContext);
     const { setMessage } = useContext(MessageContext);
     const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
 
     const changePassword = async () => {
+        setLoading(true);
         await changePasswordRequest({ currentPassword: currentPassword, newPassword: newPassword, authToken: token }).then(function (r) {
             setMessage(r.data.message);
         }).catch(function (err) {
             setMessage(err.response.data.message);
         });
+        setLoading(false);
     }
 
     return (

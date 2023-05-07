@@ -6,19 +6,24 @@ import { useContext, useState } from 'react';
 import Button from '../components/Button';
 import { registerRequest } from '../requests/auth';
 import { MessageContext } from '../context/MessageContext';
+import { LoadingContext } from '../context/LoadingContext';
 
 const Register = () => {
     const navigate = useNavigate();
+    const { setLoading } = useContext(LoadingContext);
     const { setMessage } = useContext(MessageContext);
     const [nickname, setNickname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const register = async () => {
+        setLoading(true);
         await registerRequest({ nickname, email, password }).then(function (r) {
+            setLoading(false);
             setMessage(r.data.message);
             navigate('/login');
         }).catch(function (err) {
+            setLoading(false);
             setMessage(err.response.data.message);
         });
     }

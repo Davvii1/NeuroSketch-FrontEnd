@@ -7,9 +7,11 @@ import { UserContext } from '../context/UserContext';
 import { TokenContext } from '../context/TokenContext';
 import { updateUserRequest } from '../requests/auth';
 import { MessageContext } from '../context/MessageContext';
+import { LoadingContext } from '../context/LoadingContext';
 
 const Configuration = () => {
     const { user, setUser } = useContext(UserContext);
+    const { setLoading } = useContext(LoadingContext);
     const { token } = useContext(TokenContext);
     const { setMessage } = useContext(MessageContext);
     const [email, setEmail] = useState(user.email);
@@ -17,13 +19,14 @@ const Configuration = () => {
     const [active, setActive] = useState(false);
 
     const saveChanges = async () => {
+        setLoading(true);
         setUser(user => ({ ...user, email: email }));
         await updateUserRequest({ nickname: nickname, email: email, authToken: token }).then(function (r) {
             setMessage(r.data.message);
         }).catch(function (err) {
             setMessage(err.response.data.message);
         });
-
+        setLoading(false);
     }
 
     return (
