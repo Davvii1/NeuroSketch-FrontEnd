@@ -19,8 +19,10 @@ const SearchBar = (props: Props) => {
 
     return (
         <div className='container'>
-            <img src={Icon} id='search' alt="Search" />
-            <input id='bar' type="text" value={searchValue || ''} onChange={(e) => setValues(e.target.value)} autoComplete='off' style={{ width: "55vw", border: props.border ? "1px solid black" : "" }} />
+            <div className='searchBarContainer'>
+                <img src={Icon} id='search' alt="Search" />
+                <input id='bar' type="text" value={searchValue || ''} onChange={(e) => setValues(e.target.value)} autoComplete='off' style={{ border: props.border ? "1px solid black" : "" }} />
+            </div>
             <Button text='Go' onClick={() => window.location.href = `/search?&search=${searchValue}`} height='3.125rem' fontSize='1rem' />
         </div>
     )

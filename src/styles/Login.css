@@ -1,12 +1,24 @@
-.loginContainer {
-  display: grid;
+.authContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.authContainer > *:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.loginContainer {
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .loginContainer > input {
-  grid-column: span 3 / span 3;
   height: 3.125rem;
   width: 100%;
   border-radius: 0.938rem;
@@ -15,11 +27,22 @@
   border-color: transparent;
   box-sizing: border-box;
   font-size: 1.25rem;
-  margin-left: 1.25rem;
   border: 1px solid black;
 }
 
 #underlined {
   text-decoration: underline;
   cursor: pointer;
+}
+
+@media (min-width: 640px) {
+  .loginContainer {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .loginContainer > input {
+    grid-column: span 3 / span 3;
+    margin-left: 1.25rem;
+  }
 }

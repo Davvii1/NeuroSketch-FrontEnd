@@ -3,6 +3,8 @@
   flex-direction: column;
   align-items: center;
   margin-top: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .topContainer > *:not(:last-child) {
@@ -17,9 +19,9 @@
   margin-top: 3rem;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
   justify-items: center;
-  row-gap: 3rem;
 }
 
 .imagePlaceholder {
@@ -61,4 +63,22 @@
 
 .iconsWhiteContainer > * {
   cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .imageContainer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .imageContainer {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1536px) {
+  .imageContainer {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }

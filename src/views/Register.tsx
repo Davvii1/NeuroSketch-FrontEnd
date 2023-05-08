@@ -2,7 +2,7 @@ import '../styles/Login.css'
 import Logo from '../components/Logo';
 import Home from '../assets/svgs/Home.svg';
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Button from '../components/Button';
 import { registerRequest } from '../requests/auth';
 import { MessageContext } from '../context/MessageContext';
@@ -15,6 +15,7 @@ const Register = () => {
     const [nickname, setNickname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [width, setWidth] = useState(window.innerWidth);
 
     const register = async () => {
         setLoading(true);
@@ -28,10 +29,18 @@ const Register = () => {
         });
     }
 
+    useEffect(() => {
+        window.addEventListener("resize", () => setWidth(window.innerWidth));
+    }, []);
+
     return (
         <>
-            <div className='landingContainer'>
-                <Logo color="white" logoSize='6.75rem' fontSize='3rem' />
+            <div className='authContainer'>
+                {width < 640 ? (
+                    <Logo color="white" logoSize='5rem' fontSize='2rem' />
+                ) : (
+                    <Logo color="white" logoSize='6.75rem' fontSize='3rem' />
+                )}
                 <div className='loginContainer'>
                     <p>Nickname</p>
                     <input type="text" value={nickname} onChange={(e) => setNickname(e.target.value)} />
@@ -45,6 +54,7 @@ const Register = () => {
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </div>
                 <Button text='Register' fontSize='1.5rem' height='3.50rem' impact={true} onClick={() => register()} />
+                <p>Already have an account? <span id='underlined' onClick={() => navigate('/login')}>Login</span></p>
             </div>
             <div className='iconsContainer'>
                 <img src={Home} alt="Home" onClick={() => navigate('/')} />

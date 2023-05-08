@@ -2,7 +2,7 @@ import '../styles/Login.css'
 import Logo from '../components/Logo';
 import Home from '../assets/svgs/Home.svg';
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Button from '../components/Button';
 import { getUserRequest, loginRequest } from '../requests/auth';
 import { TokenContext } from '../context/TokenContext';
@@ -19,6 +19,7 @@ const Login = () => {
     const { setMessage } = useContext(MessageContext);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [width, setWidth] = useState(window.innerWidth);
     const cookies = new Cookies();
 
     const login = async () => {
@@ -37,10 +38,18 @@ const Login = () => {
         });
     }
 
+    useEffect(() => {
+        window.addEventListener("resize", () => setWidth(window.innerWidth));
+    }, []);
+
     return (
         <>
-            <div className='landingContainer'>
-                <Logo color="white" logoSize='6.75rem' fontSize='3rem' />
+            <div className='authContainer'>
+                {width < 640 ? (
+                    <Logo color="white" logoSize='5rem' fontSize='2rem' />
+                ) : (
+                    <Logo color="white" logoSize='6.75rem' fontSize='3rem' />
+                )}
                 <div className='loginContainer'>
                     <p>Email</p>
                     <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
