@@ -25,6 +25,7 @@
 #homeText {
   margin-left: 1rem;
   cursor: pointer;
+  display: none;
 }
 
 #centeredText {
@@ -42,4 +43,10 @@
 
 .icons > *:not(:last-child) {
   margin-right: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  #homeText {
+    display: flex;
+  }
 }
